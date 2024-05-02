@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "antd": "^5.16.5",
-    "mdbreact": "^5.2.0",
-    "react-scripts": "^5.0.1",
-    "styled-components": "^6.1.9"
-  }
-}
