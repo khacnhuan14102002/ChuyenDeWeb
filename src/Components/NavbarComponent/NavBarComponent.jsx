@@ -51,18 +51,18 @@ const NavBarComponent = () => {
             <WrapperContent>
                 {renderContent('text', ['Kem chống nắng', 'Sữa rửa mặt', 'Toner'])}
             </WrapperContent>
-            <WrapperContent>
-                {renderContent('checkbox', [
-                    {value: 'a', label: 'A'},
-                    {value: 'b', label: 'B'},
-                ])}
-            </WrapperContent>
-            <WrapperContent>
-                {renderContent('star', [3, 4, 5])}
-            </WrapperContent>
-            <WrapperContent>
-                {renderContent('price', ['Dưới 40.000', 'Trên 50.000'])}
-            </WrapperContent>
+            {/*<WrapperContent>*/}
+            {/*    {renderContent('checkbox', [*/}
+            {/*        {value: 'a', label: 'A'},*/}
+            {/*        {value: 'b', label: 'B'},*/}
+            {/*    ])}*/}
+            {/*</WrapperContent>*/}
+            {/*<WrapperContent>*/}
+            {/*    {renderContent('star', [3, 4, 5])}*/}
+            {/*</WrapperContent>*/}
+            {/*<WrapperContent>*/}
+            {/*    {renderContent('price', ['Dưới 40.000', 'Trên 50.000'])}*/}
+            {/*</WrapperContent>*/}
         </div>
     )
 }
