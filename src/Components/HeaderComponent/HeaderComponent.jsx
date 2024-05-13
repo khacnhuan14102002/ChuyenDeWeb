@@ -8,11 +8,11 @@ import {ButtonInputSearch} from "../ButtonInputSearch/ButtonInputSearch";
 const HeaderComponent = () => {
     return (
         <div>
-            <WrapperHeader gutter ={16}>
-                <Col span={6}>
+            <WrapperHeader>
+                <Col span={5}>
                     <WrapperTextHeader>NTT</WrapperTextHeader>
                 </Col>
-                <Col span={12}>
+                <Col span={13}>
                 <ButtonInputSearch
                         size="large"
                         placeholder="Nhập từ khóa tìm kiếm"
