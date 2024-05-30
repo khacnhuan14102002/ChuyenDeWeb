@@ -1,29 +1,21 @@
 const express = require('express');
-// const app = express();
-// const port = 3000;
-
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
-
-// app.listen(port, () => {
-//     console.log(`Server is running on http://localhost:${port}`);
-// });
-
 const dotenv = require('dotenv');
 const mongoose = require("mongoose");
+const routes = require('./routes')
+const bodyParser = require("body-parser");
 dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3001
-
-app.get('/', (req, res) => {
-    res.send('Hello World! e')
-  })
+app.use(bodyParser.json())
+// app.get('/', (req, res) => {
+//     res.send('Hello World! e')
+//   })
+routes(app)
 
 console.log('process.env.MONGODB_DB',process.env.MONGODB_DB)
 
-mongoose.connect(`mongodb+srv://maithi73822:${process.env.MONGODB_DB}@cluster0.0phdbkh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+mongoose.connect(`${process.env.MONGODB_DB}`)
     .then(() => {
         console.log('Connect DB sucess')
     })
