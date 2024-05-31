@@ -76,9 +76,94 @@ const loginUser = (userLogin) => {
         }
     });
 };
+const updateUser = (id, data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkUser = await User.findOne({ _id: id });
+            if (checkUser === null) {
+                return resolve({
+                    status: 'OK',
+                    message: 'The user is not defined'
+                });
+            }
+            const updateUser = await  User.findByIdAndUpdate(id,data, {new :true})
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: updateUser
+            });
 
+        } catch (e) {
+            return reject(e);
+        }
+    });
+};
+
+const deleteUser = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkUser = await User.findOne({ _id: id });
+
+            if (checkUser === null) {
+                return resolve({
+                    status: 'OK',
+                    message: 'The user is not defined'
+                });
+            }
+            await  User.findByIdAndDelete(id)
+            resolve({
+                status: 'OK',
+                message: 'DELETE SUCCESS',
+            });
+
+        } catch (e) {
+             reject(e);
+        }
+    });
+};
+const getAllUser = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const  allUser = await User.find()
+            resolve({
+                status: 'OK',
+                message: 'DELETE SUCCESS',
+                data: allUser
+            });
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+const getDetailsUser = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const Users = await User.findOne({ _id: id });
+
+            if (Users === null) {
+                return resolve({
+                    status: 'OK',
+                    message: 'The user is not defined'
+                });
+            }
+            resolve({
+                status: 'OK',
+                message: 'GET USER SUCCESS',
+                data: Users
+            });
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
 module.exports = {
     createUser,
     loginUser,
+    updateUser,
+    deleteUser,
+    getAllUser,
+    getDetailsUser
 
 };
