@@ -27,6 +27,7 @@ export const WrapperProducts = styled.div`
     gap: 15px;
     margin-top: 20px;
     flex-wrap: wrap;
+    font-weight: bold;
     
 
 `
