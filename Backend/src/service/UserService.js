@@ -60,7 +60,7 @@ const loginUser = (userLogin) => {
                 id: checkUser.id,
                 isAdmin: checkUser.isAdmin
             });
-            const refesh_token = await genneralRefreshToken({
+            const refresh_token = await genneralRefreshToken({
                 id: checkUser.id,
                 isAdmin: checkUser.isAdmin
             });
@@ -68,7 +68,7 @@ const loginUser = (userLogin) => {
                 status: 'OK',
                 message: 'SUCCESS',
                access_token,
-                refesh_token
+                refresh_token
             });
 
         } catch (e) {
@@ -158,6 +158,8 @@ const getDetailsUser = (id) => {
         }
     });
 };
+
+
 module.exports = {
     createUser,
     loginUser,
@@ -165,5 +167,6 @@ module.exports = {
     deleteUser,
     getAllUser,
     getDetailsUser
+
 
 };
