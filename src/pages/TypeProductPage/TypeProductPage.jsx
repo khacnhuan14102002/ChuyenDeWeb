@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import NavBarComponent from "../../Components/NavbarComponent/NavBarComponent";
 import CardComponent from "../../Components/CardComponent/CardComponent";
 import {Pagination, Row,Col} from "antd";

@@ -3,10 +3,15 @@ import { StyleNameProduct, WrapperCardStyle, WrapperDiscountText, WrapperPrice, 
 import { StarFilled } from '@ant-design/icons';
 import logo from '../../assets/images/logo.png';
 import { WrapperStyleTextSell } from "../ProductDetailsComponents/style";
+import {useNavigate} from "react-router-dom";
 
 const CardComponent = (props) => {
-    const { countInStock, description, image, name, price, rating, type, discount, selled } = props;
+    const { countInStock, description, image, name, price, rating, type, discount, selled, id } = props;
+   const navigate = useNavigate();
 
+    const handleDetailProduct = (id) => {
+        navigate(`/products-details/${id}`);
+    }
     return (
         <WrapperCardStyle
             hoverable
@@ -14,6 +19,8 @@ const CardComponent = (props) => {
             style={{ width: 200 }}
             bodyStyle={{ padding: '10px' }}
             cover={<img alt="example" src={image} />} // Sử dụng đường dẫn từ props
+            onClick={() => handleDetailProduct(id)}
+
         >
             <img
                 src={logo}
