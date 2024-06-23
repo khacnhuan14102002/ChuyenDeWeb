@@ -1,26 +1,22 @@
 import React from 'react';
-import {
-    StyleNameProduct,
-    WrapperCardStyle,
-    WrapperDiscountText,
-    WrapperPrice,
-    WrapperReportText
-} from "./style";
-import {StarFilled} from '@ant-design/icons'
-import {Image} from "antd";
-import {WrapperStyleTextSell} from "../ProductDetailsComponents/style";
+import { StyleNameProduct, WrapperCardStyle, WrapperDiscountText, WrapperPrice, WrapperReportText } from "./style";
+import { StarFilled } from '@ant-design/icons';
+import logo from '../../assets/images/logo.png';
+import { WrapperStyleTextSell } from "../ProductDetailsComponents/style";
 
-const CardComponent = ({ imageSrc, logoSrc, productName, rating, sold, price, discount }) => {
+const CardComponent = (props) => {
+    const { countInStock, description, image, name, price, rating, type, discount, selled } = props;
+
     return (
         <WrapperCardStyle
             hoverable
-            headStyle={{width: '200px', height: '200px'}}
-            style={{width: 200}}
-            bodyStyle={{padding: '10px'}}
-            cover={<img alt="example" src={imageSrc}/>}
+            headStyle={{ width: '200px', height: '200px' }}
+            style={{ width: 200 }}
+            bodyStyle={{ padding: '10px' }}
+            cover={<img alt="example" src={image} />} // Sử dụng đường dẫn từ props
         >
             <img
-                src={logoSrc}
+                src={logo}
                 style={{
                     width: '68px',
                     height: '14px',
@@ -30,21 +26,21 @@ const CardComponent = ({ imageSrc, logoSrc, productName, rating, sold, price, di
                     borderTopLeftRadius: '3px',
                 }}
             />
-            <StyleNameProduct>{productName}</StyleNameProduct>
+            <StyleNameProduct>{name}</StyleNameProduct>
             <WrapperReportText>
-                <span style={{marginRight: '4px'}}>
-                    <span>{rating} </span><StarFilled style={{fontSize: '12px', color: 'yellow'}}/>
+                <span style={{ marginRight: '4px' }}>
+                    <span>{rating} </span><StarFilled style={{ fontSize: '12px', color: 'yellow' }} />
                 </span>
-                <WrapperStyleTextSell> | Đã bán {sold} </WrapperStyleTextSell>
+                <WrapperStyleTextSell> | Đã bán {selled}  </WrapperStyleTextSell>
             </WrapperReportText>
             <WrapperPrice>
                 {price}
                 <WrapperDiscountText>
-                    {discount}
+                   -  {discount || 5} %
                 </WrapperDiscountText>
             </WrapperPrice>
         </WrapperCardStyle>
-    )
+    );
 }
 
 export default CardComponent;
