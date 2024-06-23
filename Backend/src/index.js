@@ -8,11 +8,9 @@ dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3001
+
 app.use(cors())
-app.use(bodyParser.json())
-// app.get('/', (req, res) => {
-//     res.send('Hello World! e')
-//   })
+app.use(bodyParser.json({limit: '50mb'}))
 routes(app)
 
 console.log('process.env.MONGODB_DB',process.env.MONGODB_DB)

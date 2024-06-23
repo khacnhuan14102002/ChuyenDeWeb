@@ -8,10 +8,11 @@ import AdminProduct from "../../Components/AdminProduct/AdminProduct";
 
 const AdminPage = () => {
     const items = [
-        getItem('User', 'user', <UserOutlined />),
-        getItem('Product', 'product', <AppstoreOutlined />)
+        getItem('Người dùng', 'user', <UserOutlined />),
+        getItem('Sản phẩm', 'product', <AppstoreOutlined />)
 
     ];
+
     const [keySelected, setKeySelected] = useState('');
     const  renderPage = (key) => {
         switch (key){
@@ -34,10 +35,11 @@ const AdminPage = () => {
     const handleOnclick = ({ key }) => {
         setKeySelected(key);
     };
+
     console.log('keySelected', keySelected);
     return (
         <>
-            {/*<HeaderComponent />*/}
+            <HeaderComponent isHiddendSearch isHiddenCart/>
             <div style={{ display: 'flex' }}>
                 <Menu
                     mode="inline"
