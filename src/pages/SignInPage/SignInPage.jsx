@@ -5,8 +5,15 @@ import {WrapperContainerLeft, WrapperContainerRight, WrapperTextLight} from "./s
 import InputForm from "../../Components/InputForm/InputForm";
 import ButtonComponent from "../../Components/ButtonComponent/ButtonComponent";
 import imagelogo  from '../../assets/images/sing.jpg'
+import {useNavigate,Navigate} from "react-router-dom";
 const  SignInPage = ()  =>{
     const [isShowPassword,setIsShowPassword] = useState(false);
+
+
+    const navigate = useNavigate()
+    const handlerNavigateSignUp = () => {
+        navigate('/sign-up');
+    }
     return  (
         <div style={{display:'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.53)', height:'100vh'}}>
         <div style={{width:'800px', height:'445px', borderRadius: '6px', background: '#fff',display: 'flex'}}>
@@ -17,6 +24,7 @@ const  SignInPage = ()  =>{
 
                 <div style={{position: 'relative'}}>
                     <span
+                        onClick={() => setIsShowPassword(!isShowPassword)}
                         style={{
                             zIndex : 10,
                             position: 'absolute',
@@ -48,7 +56,7 @@ const  SignInPage = ()  =>{
                     styleTextButton={{ color: '#fff',fontSize:'15px',fontWeight: '700' }}
                 ></ButtonComponent>
                 <p><WrapperTextLight>Quên mật khẩu</WrapperTextLight></p>
-                <p>Chưa có tài khoản?<WrapperTextLight>Tạo tài khoản</WrapperTextLight></p>
+                <p>Chưa có tài khoản?<WrapperTextLight onClick={handlerNavigateSignUp}>Tạo tài khoản</WrapperTextLight></p>
             </WrapperContainerLeft>
             <WrapperContainerRight>
                <Image src={imagelogo} preview={false} alt="image-logo" height="203px" width="203px"/>
