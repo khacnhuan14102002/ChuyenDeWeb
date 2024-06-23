@@ -28,8 +28,11 @@ const HeaderComponent = () => {
         <div>
             <WrapperHeader>
                 <Col span={5}>
-                    <WrapperTextHeader>NTT</WrapperTextHeader>
+                    <a href="/">
+                        <WrapperTextHeader>NTT</WrapperTextHeader>
+                    </a>
                 </Col>
+
                 <Col span={13}>
                     <ButtonInputSearch
                         size="large"

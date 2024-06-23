@@ -102,12 +102,26 @@ const getAllProduct = async (req, res) => {
         });
     }
 };
+const getAllType = async (req, res) => {
+    // console.log('req.query', req.query)
+    try {
 
+        const response = await ProductService.getAllType()
+        return res.status(200).json(response);
+    } catch (e) {
+        res.status(500).json({
+            status: 'ERR',
+            message: 'Internal Server Error',
+            error: e.message
+        });
+    }
+};
 module.exports = {
   createProduct,
     updateProduct,
     getDetailsProduct,
     deleteProduct,
-    getAllProduct
+    getAllProduct,
+    getAllType
 
 };

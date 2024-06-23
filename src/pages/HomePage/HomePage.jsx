@@ -20,8 +20,7 @@ const HomePage = () => {
     const [stateProducts, setStateProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const searchDebounce = useDebounce(searchProduct, 1000);
-    const arr = ['Kem chống nắng', 'Mặt nạ', 'Serum', 'Sữa rửa mặt', 'Toner', 'Tẩy trang'];
-
+    const [typeProducts, setTypeProducts] = useState([])
     const fetchProductAll = async (search) => {
         const res = await ProductService.getAllProduct(search);
         return res.data; // Return the actual product data
@@ -37,12 +36,18 @@ const HomePage = () => {
         }
         refSearch.current = true;
     }, [searchDebounce]);
+    const fetchAllTypeProduct = async () =>{
+        const res = await ProductService.getAllType()
+     setTypeProducts(res?.data)
+    }
 
     const { isLoading, data: products } = useQuery(['products'], () => fetchProductAll(searchProduct), {
         retry: 3,
         retryDelay: 1000,
     });
-
+    useEffect(() => {
+        fetchAllTypeProduct()
+    }, []);
     useEffect(() => {
         if (products?.length > 0) {
             setStateProducts(products);
@@ -54,7 +59,7 @@ const HomePage = () => {
         <>
             <div style={{ padding: '0 100px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer' }}>
                 <WrapperTypeProduct>
-                    {arr.map((item) => {
+                    {typeProducts.map((item) => {
                         return (
                             <TypeProduct name={item} key={item} />
                         );
