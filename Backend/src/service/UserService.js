@@ -5,7 +5,7 @@ const {genneralRefreshToken} = require("./JwtSevice");
 
 const createUser = (userData) => {
     return new Promise(async (resolve, reject) => {
-        const { name, email, password, confirmPassword, phone } = userData;
+        const {  email, password} = userData;
         try {
             const checkUser = await User.findOne({ email: email });
             if (checkUser != null) {
@@ -16,11 +16,11 @@ const createUser = (userData) => {
             }
             const hash = bcrypt.hashSync(password, 10);
             const createdUser = await User.create({
-                name,
+                // name,
                 email,
                 password: hash,
-                confirmPassword: hash, // Typically, confirmPassword shouldn't be stored in the database
-                phone
+                // confirmPassword: hash, // Typically, confirmPassword shouldn't be stored in the database
+                // phone
             });
             if (createdUser) {
                 return resolve({
@@ -51,7 +51,7 @@ const loginUser = (userLogin) => {
 
             if (!comparePassword) {
                 return resolve({
-                    status: 'OK',
+                    status: 'err',
                     message: 'The password or user is incorrect',
                 });
             }

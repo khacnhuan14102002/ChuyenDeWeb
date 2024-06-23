@@ -2,7 +2,7 @@ const UserService = require('../service/UserService');
 const JwtService = require('../service/JwtSevice')
 const validateUserInput = (name, email, password, confirmPassword, phone) => {
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!name || !email || !password || !confirmPassword || !phone) {
+    if (!email || !password ) {
         return 'All input fields are required';
     }
     if (!reg.test(email)) {
