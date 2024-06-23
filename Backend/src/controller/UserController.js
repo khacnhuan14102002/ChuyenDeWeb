@@ -38,12 +38,19 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-        const { name, email, password, confirmPassword, phone } = req.body;
-        const validationError = validateUserInput(name, email, password, confirmPassword, phone);
-        if (validationError) {
-            return res.status(400).json({
+        const { email, password } = req.body;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isCheckEmail = regex.test(email);
+
+        if (!password || !email) {
+            return res.status(200).json({
                 status: 'ERR',
-                message: validationError
+                message: 'The input is required'
+            });
+        } else if (!isCheckEmail) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'The input email is invalid'
             });
         }
 

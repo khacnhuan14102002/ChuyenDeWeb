@@ -51,12 +51,12 @@ const loginUser = (userLogin) => {
 
             if (!comparePassword) {
                 return resolve({
-                    status: 'err',
+                    status: 'ERR',
                     message: 'The password or user is incorrect',
                 });
             }
 
-            const access_token = await  genneralAccessToken({
+            const access_token = await genneralAccessToken({
                 id: checkUser.id,
                 isAdmin: checkUser.isAdmin
             });
@@ -67,7 +67,7 @@ const loginUser = (userLogin) => {
             return resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-               access_token,
+                access_token,
                 refresh_token
             });
 
@@ -75,6 +75,7 @@ const loginUser = (userLogin) => {
             return reject(e);
         }
     });
+
 };
 const updateUser = (id, data) => {
     return new Promise(async (resolve, reject) => {

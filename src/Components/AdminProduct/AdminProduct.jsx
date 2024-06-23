@@ -51,6 +51,7 @@ const  AdminProduct = () => {
             <div style={{marginTop: '10px'}}>
                 <TableComponent/>
             </div>
+
             <Modal title="tạo sản phẩm" open={isModalOpen} onCancel={handleCancel} okText=''>
                 <Form
                     name="basic"

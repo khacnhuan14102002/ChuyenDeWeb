@@ -10,6 +10,7 @@ import {useMutation} from "react-query";
 import axios from "axios";
 import * as UserService from '../../Services/UserService'
 import {loginUser} from "../../Services/UserService";
+import {useMutationHooks} from "../../hook/useDebounce";
 
 
 const  SignInPage = ()  =>{
@@ -19,9 +20,9 @@ const  SignInPage = ()  =>{
 
     const navigate = useNavigate()
 
-    const  mutation = useMutation({
-        mutationFn: data => UserService.loginUser(data)
-    })
+    const  mutation =useMutationHooks(
+         data => UserService.loginUser(data)
+    )
 console.log('mutation', mutation)
 
     const handlerNavigateSignUp = () => {
