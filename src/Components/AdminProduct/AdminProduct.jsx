@@ -4,6 +4,7 @@ import {PlusCircleFilled} from "@ant-design/icons";
 import {Button, Checkbox, Form, Input, Modal} from "antd";
 import TableComponent from "../TableComponent/TableComponent";
 import InputComponent from "../InputComponent/InputComponent";
+import {getBase64} from "../../utils";
 const  AdminProduct = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,6 +29,17 @@ const  AdminProduct = () => {
             [e.target.name]: e.target.value
         })
         // console.log('e.target.name',e.target.name, e.target.value)
+    }
+
+    const handleOnChangeAvatar = async ({ fileList}) => {
+        const file= fileList[0]
+        if(!file.url && !file.prview){
+            file.preview = await getBase64(file.originFil)
+        }
+        setStateProduct({
+            ...stateProduct,
+            image: file.preview
+        })
     }
     return(
         <div>
@@ -127,9 +139,20 @@ const  AdminProduct = () => {
                         <InputComponent value={stateProduct.descriptions} onChange={(handleOnChange)} name="descriptions" />
                     </Form.Item>
 
-                    {/*<WrapperUploadFile  onChange={handleOnChangeAvatar} maxCount={1}>*/}
-                    {/*    <Button icon={<UploadOutline/>}>Select file</Button>*/}
-                    {/*</WrapperUploadFile>*/}
+                    <Form.Item
+                        label="Image"
+                        name="image"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your image!',
+                            },]}
+                    >
+                        {/*<WrapperUploadFile  onChange={handleOnChangeAvatar} maxCount={1}>*/}
+                        {/*    <Button >Select file</Button>*/}
+                        {/*</WrapperUploadFile>*/}
+                    </Form.Item>
+
                     <Form.Item name="remember" valuePropName="checked" wrapperCol={{offset: 8, span: 16,}}>
                        <Button type="primary" htmlType="submit">
                            Submit

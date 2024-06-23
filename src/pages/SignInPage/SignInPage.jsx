@@ -6,13 +6,41 @@ import InputForm from "../../Components/InputForm/InputForm";
 import ButtonComponent from "../../Components/ButtonComponent/ButtonComponent";
 import imagelogo  from '../../assets/images/sing.jpg'
 import {useNavigate,Navigate} from "react-router-dom";
+import {useMutation} from "react-query";
+import axios from "axios";
+import * as UserService from '../../Services/UserService'
+import {loginUser} from "../../Services/UserService";
+
+
 const  SignInPage = ()  =>{
     const [isShowPassword,setIsShowPassword] = useState(false);
-
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
+
+    const  mutation = useMutation({
+        mutationFn: data => UserService.loginUser(data)
+    })
+console.log('mutation', mutation)
+
     const handlerNavigateSignUp = () => {
         navigate('/sign-up');
+    }
+    const handleOnChangeEmail = (value) => {
+        setEmail(value)
+    }
+
+    const handleOnChangePassword = (value) => {
+        setPassword(value)
+    }
+
+    const handleSignIn = () => {
+        mutation.mutate(
+            email,
+            password
+        )
+        console.log('sign-in', email, password)
     }
     return  (
         <div style={{display:'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.53)', height:'100vh'}}>
@@ -20,7 +48,7 @@ const  SignInPage = ()  =>{
             <WrapperContainerLeft>
                 <h1>Xin chào</h1>
                 <p>Đăng nhập vào tạo tài khoản</p>
-                <InputForm style={{marginBottom: '10px'}} placeholder={"abc@gmail.com"}/>
+                <InputForm style={{marginBottom: '10px'}} placeholder={"abc@gmail.com"} value={email} onChange={handleOnChangeEmail}/>
 
                 <div style={{position: 'relative'}}>
                     <span
@@ -39,10 +67,12 @@ const  SignInPage = ()  =>{
                         )
                     }
                     </span>
-                    <InputForm placeholder="password" type={isShowPassword ? "text" : "password"}/>
+                    <InputForm placeholder="password" type={isShowPassword ? "text" : "password"}
+                               value={password} onChange={handleOnChangePassword}/>
                 </div>
                 <ButtonComponent
-                    bordered={false}
+                    disabled ={ !email.length || !password.length }
+                    onClick={handleSignIn}
                     size={40}
                     styleButton={{
                         background: 'rgb(255,57,69)',
