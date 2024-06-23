@@ -6,12 +6,17 @@ import DefaultComponent from "./Components/DefaultComponent/DefaultComponent";
 import axios from "axios";
 
 function App() {
-    useEffect(() => {
 
-    });
-    const fetchApi = async () =>{
-        const res = axios.get(`${process.env.REACT_APP_API_URL}/api/`);
+    useEffect(() => {
+        fetchAPI()
+
+    },[])
+    console.log('process.env.REACT_API_URL_BACKEND', process.env.REACT_API_URL_BACKEND)
+    const fetchAPI = async () => {
+        const  res = await axios.get(`${process.env.REACT_API_URL_BACKEND}/product/get-all`)
+        console.log('res', res)
     }
+
     return (
         <div>
             <Router>
